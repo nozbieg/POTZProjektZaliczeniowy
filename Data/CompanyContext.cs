@@ -21,7 +21,7 @@ namespace POTZProjektZaliczeniowy.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source=d:\Company.db");
+            optionsBuilder.UseSqlite(@"Data Source=Company.db");
             base.OnConfiguring(optionsBuilder);
         }
 
