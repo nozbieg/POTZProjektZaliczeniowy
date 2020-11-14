@@ -18,7 +18,9 @@ namespace POTZProjektZaliczeniowy.Model
         public string Email { get; set; }
 
 #nullable enable
+        
         public int? CompanyID { get; set; }
+        [ForeignKey("CompanyID")]
         public Company? Company { get; set; }
 
        

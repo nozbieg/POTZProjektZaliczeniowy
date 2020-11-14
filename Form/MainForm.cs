@@ -43,14 +43,16 @@ namespace POTZProjektZaliczeniowy
             using (CompanyContext dbContext = new CompanyContext())
             {
                 BindingSource source = new BindingSource();
-                var query = from e in dbContext.Employes 
-                            select new Employe{ 
-                                EmployeID=e.EmployeID,
-                                FristName=e.FristName,
-                                LastName= e.LastName,
-                                Email=e.Email,
-                                CompanyID = e.CompanyID,
-                                Company = e.Company };
+                var query = (from e in dbContext.Employes.Include("Company")
+
+                             select new  {
+                                 e.EmployeID,
+                                 e.FristName,
+                                 e.LastName,
+                                 e.Email,                               
+                                 e.Company.CompanyName,
+                                 e.Company.NIP
+                             });
                 source.DataSource = query.ToList();
                 employesGridView.DataSource = source;
                 employesGridView.Refresh();
@@ -58,8 +60,10 @@ namespace POTZProjektZaliczeniowy
                 employesGridView.Columns[1].HeaderText = "FristName";
                 employesGridView.Columns[2].HeaderText = "LastName";
                 employesGridView.Columns[3].HeaderText = "Email";
-                //employesGridView.Columns[3].HeaderText = "CompanyName";
+                employesGridView.Columns[4].HeaderText = "Company";
 
+               
+                
             }
         }
 
@@ -120,7 +124,12 @@ namespace POTZProjektZaliczeniowy
             }
             else if(mainTabControl.SelectedTab.Name == "EmployesPage")
             {
-                var selectedEmploye = (Employe)this.employesGridView.CurrentRow.DataBoundItem;
+                Employe selectedEmploye;
+                using (CompanyContext dbContext = new CompanyContext()) {
+                    var employeToEdit = Convert.ToInt32(this.employesGridView.CurrentRow.Cells[0].Value);
+                    selectedEmploye = dbContext.Employes.Where(x => x.EmployeID == employeToEdit).SingleOrDefault();
+                   
+                }
                 EditEmployeForm editEmployeForm = new EditEmployeForm(this, selectedEmploye);
                 editEmployeForm.ShowDialog();
             }
@@ -154,6 +163,43 @@ namespace POTZProjektZaliczeniowy
         {
             RefreshEmployeGridView();
             RefreshCompanyGridView();
+        }
+
+        private void mainTabControl_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxSearchField_TextChanged(object sender, EventArgs e)
+        {
+            BindingSource source = new BindingSource();
+            string searchValue = txtBoxSearchField.Text;
+            using (CompanyContext dbContext = new CompanyContext())
+            {
+                var query = from emp in dbContext.Employes
+                            where emp.FristName.Contains(searchValue) 
+                                || emp.LastName.Contains(searchValue)
+                                || emp.Email.Contains(searchValue)
+                                || emp.Company.CompanyName.Contains(searchValue)
+                                || emp.Company.NIP.Contains(searchValue)
+                            select new
+                            {
+                                emp.FristName,
+                                emp.LastName,
+                                emp.Email,
+                                emp.Company.CompanyName,
+                                emp.Company.NIP
+                            };
+                source.DataSource = query.ToList();
+                employesGridView.DataSource = source;
+                employesGridView.Refresh();
+                
+            }
         }
     } 
 }

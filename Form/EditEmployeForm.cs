@@ -45,7 +45,7 @@ namespace POTZProjektZaliczeniowy.Form
             {           
                 List<Company> company = dbContext.Companies.ToList();
                 comboBoxEmployeCompany.DataSource = company;
-                comboBoxEmployeCompany.ValueMember = "CompanyId";
+                comboBoxEmployeCompany.ValueMember = "CompanyID";
                 comboBoxEmployeCompany.DisplayMember = "CompanyName";
             }
         }

@@ -27,7 +27,7 @@ namespace POTZProjektZaliczeniowy.Form
             using (CompanyContext dbcontext = new CompanyContext())
             {
                 company.CompanyName = txtBoxCompanyName.Text;
-                company.NIP = Convert.ToInt32(txtBoxCompanyNIP.Text);
+                company.NIP = txtBoxCompanyNIP.Text;
                 dbcontext.Companies.Update(company);
                 dbcontext.SaveChanges();
             }
@@ -42,8 +42,7 @@ namespace POTZProjektZaliczeniowy.Form
         {
             using (CompanyContext dbcontext = new CompanyContext())
             {
-                dbcontext.Companies.Find();
-
+               
                 dbcontext.Companies.Remove(company);
                 dbcontext.SaveChanges();
             }
@@ -62,7 +61,7 @@ namespace POTZProjektZaliczeniowy.Form
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //DeleteCompany(editedCompany);
+            DeleteCompany(editedCompany);
             mainForm.RefreshCompanyGridView();
             this.Close();
         }

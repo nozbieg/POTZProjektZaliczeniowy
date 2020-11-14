@@ -39,7 +39,7 @@ namespace POTZProjektZaliczeniowy.Form
                 Company company = new Company()
                 {
                     CompanyName = companyName,
-                    NIP = Convert.ToInt32(nIP)
+                    NIP = nIP
                 };
                 dbContext.Companies.Add(company);
                 dbContext.SaveChanges();
