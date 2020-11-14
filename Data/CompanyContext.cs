@@ -21,16 +21,18 @@ namespace POTZProjektZaliczeniowy.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(@"Data Source=Company.db");
+            optionsBuilder.EnableSensitiveDataLogging(true);
             base.OnConfiguring(optionsBuilder);
         }
-        // protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Company>()
-        //        .HasMany<Employe>(e => e.Employes)
-        //        .WithOne(e => e.Company);
-        
-        //}
-        
-    
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Company>()
+                .HasMany<Employe>(e => e.Employes)
+                .WithOne(e => e.Company)
+                .OnDelete(DeleteBehavior.SetNull);
+
+        }
+
+
     }
 }

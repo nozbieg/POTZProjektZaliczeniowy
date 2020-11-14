@@ -43,16 +43,32 @@ namespace POTZProjektZaliczeniowy.Form
             
             using (var dbContext = new CompanyContext())
             {
-                var asignedCompany = (from comp in dbContext.Companies where comp.CompanyID == company.CompanyID select comp).ToList();
 
-                Employe employe = new Employe()
+                if (comboBoxCompany.SelectedItem != null)
                 {
-                    FristName = firstName,
-                    LastName = lastName,
-                    Email = email,
-                    Company = asignedCompany[0]            
-                };               
-                dbContext.Employes.Add(employe);
+
+                    var asignedCompany = (from comp in dbContext.Companies where comp.CompanyID == company.CompanyID select comp).ToList();
+                    Employe employe = new Employe()
+                    {
+                        FristName = firstName,
+                        LastName = lastName,
+                        Email = email,
+                        Company = asignedCompany[0]
+                    };
+                    dbContext.Employes.Add(employe);
+                }
+                else
+                {
+                    Employe employe = new Employe()
+                    {
+                        FristName = firstName,
+                        LastName = lastName,
+                        Email = email,
+                        Company = null
+                    };
+                    dbContext.Employes.Add(employe);
+                }
+                
                 dbContext.SaveChanges();
             }
             

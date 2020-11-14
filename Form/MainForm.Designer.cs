@@ -37,6 +37,7 @@
             this.employesGridView = new System.Windows.Forms.DataGridView();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnEditRecord = new System.Windows.Forms.Button();
+            this.btnDeleteRecord = new System.Windows.Forms.Button();
             this.mainTabControl.SuspendLayout();
             this.CompaniesPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companiesGridView)).BeginInit();
@@ -74,6 +75,7 @@
             this.mainTabControl.Size = new System.Drawing.Size(597, 397);
             this.mainTabControl.TabIndex = 2;
             this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.mainTabControl.Click += new System.EventHandler(this.mainTabControl_Click);
             // 
             // CompaniesPage
             // 
@@ -142,11 +144,22 @@
             this.btnEditRecord.UseVisualStyleBackColor = true;
             this.btnEditRecord.Click += new System.EventHandler(this.btnEditRecord_Click);
             // 
+            // btnDeleteRecord
+            // 
+            this.btnDeleteRecord.Location = new System.Drawing.Point(336, 415);
+            this.btnDeleteRecord.Name = "btnDeleteRecord";
+            this.btnDeleteRecord.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteRecord.TabIndex = 5;
+            this.btnDeleteRecord.Text = "btnDeleteRecord";
+            this.btnDeleteRecord.UseVisualStyleBackColor = true;
+            this.btnDeleteRecord.Click += new System.EventHandler(this.btnDeleteRecord_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 454);
+            this.Controls.Add(this.btnDeleteRecord);
             this.Controls.Add(this.btnEditRecord);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.mainTabControl);
@@ -175,6 +188,7 @@
         private System.Windows.Forms.DataGridView companiesGridView;
         private System.Windows.Forms.DataGridView employesGridView;
         private System.Windows.Forms.Button btnEditRecord;
+        private System.Windows.Forms.Button btnDeleteRecord;
     }
 }
 

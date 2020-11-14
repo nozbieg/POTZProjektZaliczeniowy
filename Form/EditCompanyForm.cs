@@ -63,8 +63,8 @@ namespace POTZProjektZaliczeniowy.Form
         private void btnDelete_Click(object sender, EventArgs e)
         {
             //DeleteCompany(editedCompany);
-            //mainForm.RefreshCompanyGridView();
-            //this.Close();
+            mainForm.RefreshCompanyGridView();
+            this.Close();
         }
     }
 }

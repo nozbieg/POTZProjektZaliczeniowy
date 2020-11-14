@@ -70,7 +70,10 @@ namespace POTZProjektZaliczeniowy
             {
                 BindingSource source = new BindingSource();
                 var query = from c in dbContext.Companies 
-                            select new Company{ CompanyID = c.CompanyID, CompanyName = c.CompanyName, NIP = c.NIP };
+                            select new Company{ 
+                                CompanyID = c.CompanyID,
+                                CompanyName = c.CompanyName,
+                                NIP = c.NIP };
                 source.DataSource = query.ToList();
                 companiesGridView.DataSource = source;
                 companiesGridView.Refresh();
@@ -121,6 +124,36 @@ namespace POTZProjektZaliczeniowy
                 EditEmployeForm editEmployeForm = new EditEmployeForm(this, selectedEmploye);
                 editEmployeForm.ShowDialog();
             }
+        }
+
+        private void btnDeleteRecord_Click(object sender, EventArgs e)
+        {
+            if (mainTabControl.SelectedTab.Name == "CompaniesPage")
+            {
+                using (CompanyContext dbContext = new CompanyContext())
+                {
+                 var selectedCompany = (Company)this.companiesGridView.CurrentRow.DataBoundItem;
+                 dbContext.Companies.Remove(selectedCompany);
+                 dbContext.SaveChanges();
+                 RefreshCompanyGridView();
+                }
+            }
+            else if (mainTabControl.SelectedTab.Name == "EmployesPage")
+            {
+                using (CompanyContext dbContext = new CompanyContext())
+                {
+                    var selectedEmploye = (Employe)this.employesGridView.CurrentRow.DataBoundItem;
+                    dbContext.Employes.Remove(selectedEmploye);
+                    dbContext.SaveChanges();
+                }
+                RefreshEmployeGridView();
+            }
+        }
+
+        private void mainTabControl_Click(object sender, EventArgs e)
+        {
+            RefreshEmployeGridView();
+            RefreshCompanyGridView();
         }
     } 
 }

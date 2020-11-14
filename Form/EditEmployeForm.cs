@@ -30,13 +30,19 @@ namespace POTZProjektZaliczeniowy.Form
             txtBoxEmployeFirstName.Text = employe.FristName;
             txtBoxEmployeLastName.Text = employe.LastName;
             txtBoxEmployeEmail.Text = employe.Email;
-            comboBoxEmployeCompany.SelectedValue = employe.Company.CompanyID;
+            if (employe.Company != null)
+            {
+                comboBoxEmployeCompany.SelectedValue = employe.Company.CompanyID;
+            }else
+            {
+                comboBoxEmployeCompany.SelectedItem = null;
+            }
 
         }
         void FillComboBoxData()
         {
             using (var dbContext = new CompanyContext())
-            {
+            {           
                 List<Company> company = dbContext.Companies.ToList();
                 comboBoxEmployeCompany.DataSource = company;
                 comboBoxEmployeCompany.ValueMember = "CompanyId";
