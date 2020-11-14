@@ -249,6 +249,18 @@ namespace POTZProjektZaliczeniowy
             companiesGridView.DataSource = source;
             companiesGridView.Refresh(); 
         }
+
+        private void companiesGridView_DoubleClick(object sender, EventArgs e)
+        {
+            Company selectedCompany;
+            using (CompanyContext dbContext = new CompanyContext())
+            {
+                var companyToEdit = Convert.ToInt32(this.companiesGridView.CurrentRow.Cells[0].Value);
+                selectedCompany = dbContext.Companies.Where(x => x.CompanyID == companyToEdit).SingleOrDefault();
+            }   
+                DetailViewCompanyForm detailViewCompanyForm = new DetailViewCompanyForm(this, selectedCompany);
+            detailViewCompanyForm.ShowDialog();
+        }
     } 
 }
 

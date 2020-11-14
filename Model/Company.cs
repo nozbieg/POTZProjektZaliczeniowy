@@ -9,7 +9,7 @@ namespace POTZProjektZaliczeniowy.Model
         public int CompanyID { get; set; }
 
         public string CompanyName { get; set; }
-
+#nullable enable
         public string? NIP { get; set; }
 
 

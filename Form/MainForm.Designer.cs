@@ -37,16 +37,16 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtBoxSearchFieldCompany = new System.Windows.Forms.TextBox();
             this.SearchForCompany = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.EmployesPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.employesGridView = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRefreshEmployes = new System.Windows.Forms.Button();
             this.SearchForEmploye = new System.Windows.Forms.Label();
             this.txtBoxSearchField = new System.Windows.Forms.TextBox();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnEditRecord = new System.Windows.Forms.Button();
             this.btnDeleteRecord = new System.Windows.Forms.Button();
-            this.btnRefreshEmployes = new System.Windows.Forms.Button();
             this.mainTabControl.SuspendLayout();
             this.CompaniesPage.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -124,6 +124,7 @@
             this.companiesGridView.Size = new System.Drawing.Size(791, 392);
             this.companiesGridView.TabIndex = 0;
             this.companiesGridView.Text = "dataGridView1";
+            this.companiesGridView.DoubleClick += new System.EventHandler(this.companiesGridView_DoubleClick);
             // 
             // groupBox3
             // 
@@ -152,6 +153,16 @@
             this.SearchForCompany.Size = new System.Drawing.Size(117, 15);
             this.SearchForCompany.TabIndex = 0;
             this.SearchForCompany.Text = "Search For Company";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(683, 21);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(111, 23);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "btnRefresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // EmployesPage
             // 
@@ -197,6 +208,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
+            // btnRefreshEmployes
+            // 
+            this.btnRefreshEmployes.Location = new System.Drawing.Point(677, 25);
+            this.btnRefreshEmployes.Name = "btnRefreshEmployes";
+            this.btnRefreshEmployes.Size = new System.Drawing.Size(111, 23);
+            this.btnRefreshEmployes.TabIndex = 3;
+            this.btnRefreshEmployes.Text = "btnRefresh";
+            this.btnRefreshEmployes.UseVisualStyleBackColor = true;
+            this.btnRefreshEmployes.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // SearchForEmploye
             // 
             this.SearchForEmploye.AutoSize = true;
@@ -214,16 +235,6 @@
             this.txtBoxSearchField.Size = new System.Drawing.Size(543, 23);
             this.txtBoxSearchField.TabIndex = 0;
             this.txtBoxSearchField.TextChanged += new System.EventHandler(this.txtBoxSearchField_TextChanged);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(683, 21);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(111, 23);
-            this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "btnRefresh";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnEditRecord
             // 
@@ -244,16 +255,6 @@
             this.btnDeleteRecord.Text = "btnDeleteRecord";
             this.btnDeleteRecord.UseVisualStyleBackColor = true;
             this.btnDeleteRecord.Click += new System.EventHandler(this.btnDeleteRecord_Click);
-            // 
-            // btnRefreshEmployes
-            // 
-            this.btnRefreshEmployes.Location = new System.Drawing.Point(677, 25);
-            this.btnRefreshEmployes.Name = "btnRefreshEmployes";
-            this.btnRefreshEmployes.Size = new System.Drawing.Size(111, 23);
-            this.btnRefreshEmployes.TabIndex = 3;
-            this.btnRefreshEmployes.Text = "btnRefresh";
-            this.btnRefreshEmployes.UseVisualStyleBackColor = true;
-            this.btnRefreshEmployes.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // MainForm
             // 
