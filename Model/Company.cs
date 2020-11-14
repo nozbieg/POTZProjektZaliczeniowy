@@ -10,7 +10,7 @@ namespace POTZProjektZaliczeniowy.Model
 
         public string CompanyName { get; set; }
 
-        public string NIP { get; set; }
+        public string? NIP { get; set; }
 
 
         public ICollection<Employe> Employes { get; set; }

@@ -32,8 +32,9 @@ namespace POTZProjektZaliczeniowy.Form
             txtBoxEmployeEmail.Text = employe.Email;
             if (employe.Company != null)
             {
-                comboBoxEmployeCompany.SelectedValue = employe.Company.CompanyID;
-            }else
+                comboBoxEmployeCompany.SelectedItem = employe.Company;
+
+            }else if(employe.Company == null)
             {
                 comboBoxEmployeCompany.SelectedItem = null;
             }

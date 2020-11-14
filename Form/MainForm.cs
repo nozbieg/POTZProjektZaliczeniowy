@@ -65,6 +65,7 @@ namespace POTZProjektZaliczeniowy
                
                 
             }
+            txtBoxSearchField.Text = "";
         }
 
         public void RefreshCompanyGridView()
@@ -74,10 +75,12 @@ namespace POTZProjektZaliczeniowy
             {
                 BindingSource source = new BindingSource();
                 var query = from c in dbContext.Companies 
-                            select new Company{ 
-                                CompanyID = c.CompanyID,
-                                CompanyName = c.CompanyName,
-                                NIP = c.NIP };
+                            select new { 
+                                c.CompanyID,
+                                c.CompanyName,
+                                c.NIP,
+                                
+                            };
                 source.DataSource = query.ToList();
                 companiesGridView.DataSource = source;
                 companiesGridView.Refresh();
@@ -85,6 +88,49 @@ namespace POTZProjektZaliczeniowy
                 companiesGridView.Columns[1].HeaderText = "CompanyName";
                 companiesGridView.Columns[2].HeaderText = "NIP";
             }
+            txtBoxSearchFieldCompany.Text = "";
+        }
+        private BindingSource SearchIn(string searchValue, string table)
+        {
+            BindingSource source = new BindingSource();
+            using (CompanyContext dbContext = new CompanyContext())
+            {
+                if (table == "Employes") 
+                {
+                    var query = from emp in dbContext.Employes
+                                where emp.FristName.Contains(searchValue)
+                                    || emp.LastName.Contains(searchValue)
+                                    || emp.Email.Contains(searchValue)
+                                    || emp.Company.CompanyName.Contains(searchValue)
+                                    || emp.Company.NIP.Contains(searchValue)
+                                select new
+                                {
+                                    emp.EmployeID,
+                                    emp.FristName,
+                                    emp.LastName,
+                                    emp.Email,
+                                    emp.Company.CompanyName,
+                                    emp.Company.NIP
+                                };
+                    source.DataSource = query.ToList();
+
+                }
+                else if (table == "Companies")
+                {
+                    var query = from comp in dbContext.Companies
+                                where comp.CompanyName.Contains(searchValue)
+                                        || comp.NIP.Contains(searchValue)       
+                                select new
+                                {
+                                    comp.CompanyID,
+                                    comp.CompanyName,
+                                    comp.NIP,
+                                    
+                                };
+                    source.DataSource = query.ToList();
+                }
+            }
+            return source;
         }
         private void tabPage1_Click(object sender, EventArgs e)
         {
@@ -117,8 +163,14 @@ namespace POTZProjektZaliczeniowy
         {
             if(mainTabControl.SelectedTab.Name == "CompaniesPage")
             {
-               
-                var selectedCompany = (Company)this.companiesGridView.CurrentRow.DataBoundItem;
+                Company selectedCompany;
+                using (CompanyContext dbContext = new CompanyContext())
+                {
+                    var companyToEdit = Convert.ToInt32(this.companiesGridView.CurrentRow.Cells[0].Value);
+                    selectedCompany = dbContext.Companies.Where(x => x.CompanyID == companyToEdit).SingleOrDefault();
+
+                }
+                
                 EditCompanyForm editCompanyForm = new EditCompanyForm(this, selectedCompany);
                 editCompanyForm.ShowDialog();
             }
@@ -134,24 +186,29 @@ namespace POTZProjektZaliczeniowy
                 editEmployeForm.ShowDialog();
             }
         }
+      
 
         private void btnDeleteRecord_Click(object sender, EventArgs e)
         {
             if (mainTabControl.SelectedTab.Name == "CompaniesPage")
             {
+                Company selectedCompany;
                 using (CompanyContext dbContext = new CompanyContext())
                 {
-                 var selectedCompany = (Company)this.companiesGridView.CurrentRow.DataBoundItem;
-                 dbContext.Companies.Remove(selectedCompany);
+                    var companyToEdit = Convert.ToInt32(this.companiesGridView.CurrentRow.Cells[0].Value);
+                    selectedCompany = dbContext.Companies.Where(x => x.CompanyID == companyToEdit).SingleOrDefault();
+                    dbContext.Companies.Remove(selectedCompany);
                  dbContext.SaveChanges();
                  RefreshCompanyGridView();
                 }
             }
             else if (mainTabControl.SelectedTab.Name == "EmployesPage")
             {
+                Employe selectedEmploye;
                 using (CompanyContext dbContext = new CompanyContext())
                 {
-                    var selectedEmploye = (Employe)this.employesGridView.CurrentRow.DataBoundItem;
+                    var employeToEdit = Convert.ToInt32(this.employesGridView.CurrentRow.Cells[0].Value);
+                    selectedEmploye = dbContext.Employes.Where(x => x.EmployeID == employeToEdit).SingleOrDefault();
                     dbContext.Employes.Remove(selectedEmploye);
                     dbContext.SaveChanges();
                 }
@@ -177,29 +234,20 @@ namespace POTZProjektZaliczeniowy
 
         private void txtBoxSearchField_TextChanged(object sender, EventArgs e)
         {
-            BindingSource source = new BindingSource();
+            
             string searchValue = txtBoxSearchField.Text;
-            using (CompanyContext dbContext = new CompanyContext())
-            {
-                var query = from emp in dbContext.Employes
-                            where emp.FristName.Contains(searchValue) 
-                                || emp.LastName.Contains(searchValue)
-                                || emp.Email.Contains(searchValue)
-                                || emp.Company.CompanyName.Contains(searchValue)
-                                || emp.Company.NIP.Contains(searchValue)
-                            select new
-                            {
-                                emp.FristName,
-                                emp.LastName,
-                                emp.Email,
-                                emp.Company.CompanyName,
-                                emp.Company.NIP
-                            };
-                source.DataSource = query.ToList();
-                employesGridView.DataSource = source;
-                employesGridView.Refresh();
-                
-            }
+            BindingSource source = SearchIn(searchValue, "Employes");
+            employesGridView.DataSource = source;
+            employesGridView.Refresh();
+        }
+       
+
+        private void txtBoxSearchFieldCompany_TextChanged(object sender, EventArgs e)
+        {
+            string searchValue = txtBoxSearchFieldCompany.Text;
+            BindingSource source = SearchIn(searchValue, "Companies");
+            companiesGridView.DataSource = source;
+            companiesGridView.Refresh(); 
         }
     } 
 }

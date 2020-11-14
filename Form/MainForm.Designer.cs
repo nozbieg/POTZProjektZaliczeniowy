@@ -32,23 +32,30 @@
             this.btnAddCompany = new System.Windows.Forms.Button();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.CompaniesPage = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.companiesGridView = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtBoxSearchFieldCompany = new System.Windows.Forms.TextBox();
+            this.SearchForCompany = new System.Windows.Forms.Label();
             this.EmployesPage = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.employesGridView = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.SearchForEmploye = new System.Windows.Forms.Label();
+            this.txtBoxSearchField = new System.Windows.Forms.TextBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnEditRecord = new System.Windows.Forms.Button();
             this.btnDeleteRecord = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtBoxSearchField = new System.Windows.Forms.TextBox();
-            this.SearchForEmploye = new System.Windows.Forms.Label();
+            this.btnRefreshEmployes = new System.Windows.Forms.Button();
             this.mainTabControl.SuspendLayout();
             this.CompaniesPage.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companiesGridView)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.EmployesPage.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employesGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAddEmploye
@@ -86,15 +93,25 @@
             // 
             // CompaniesPage
             // 
-            this.CompaniesPage.Controls.Add(this.companiesGridView);
+            this.CompaniesPage.Controls.Add(this.groupBox4);
+            this.CompaniesPage.Controls.Add(this.groupBox3);
             this.CompaniesPage.Location = new System.Drawing.Point(4, 24);
             this.CompaniesPage.Name = "CompaniesPage";
             this.CompaniesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.CompaniesPage.Size = new System.Drawing.Size(810, 369);
+            this.CompaniesPage.Size = new System.Drawing.Size(810, 486);
             this.CompaniesPage.TabIndex = 0;
             this.CompaniesPage.Text = "Companies";
             this.CompaniesPage.UseVisualStyleBackColor = true;
             this.CompaniesPage.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.companiesGridView);
+            this.groupBox4.Location = new System.Drawing.Point(3, 69);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(797, 414);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
             // 
             // companiesGridView
             // 
@@ -102,11 +119,39 @@
             this.companiesGridView.AllowUserToDeleteRows = false;
             this.companiesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.companiesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.companiesGridView.Location = new System.Drawing.Point(3, 3);
+            this.companiesGridView.Location = new System.Drawing.Point(3, 19);
             this.companiesGridView.Name = "companiesGridView";
-            this.companiesGridView.Size = new System.Drawing.Size(804, 363);
+            this.companiesGridView.Size = new System.Drawing.Size(791, 392);
             this.companiesGridView.TabIndex = 0;
             this.companiesGridView.Text = "dataGridView1";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txtBoxSearchFieldCompany);
+            this.groupBox3.Controls.Add(this.SearchForCompany);
+            this.groupBox3.Controls.Add(this.btnRefresh);
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(797, 60);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            // 
+            // txtBoxSearchFieldCompany
+            // 
+            this.txtBoxSearchFieldCompany.Location = new System.Drawing.Point(129, 22);
+            this.txtBoxSearchFieldCompany.Name = "txtBoxSearchFieldCompany";
+            this.txtBoxSearchFieldCompany.Size = new System.Drawing.Size(545, 23);
+            this.txtBoxSearchFieldCompany.TabIndex = 1;
+            this.txtBoxSearchFieldCompany.TextChanged += new System.EventHandler(this.txtBoxSearchFieldCompany_TextChanged);
+            // 
+            // SearchForCompany
+            // 
+            this.SearchForCompany.AutoSize = true;
+            this.SearchForCompany.Location = new System.Drawing.Point(6, 28);
+            this.SearchForCompany.Name = "SearchForCompany";
+            this.SearchForCompany.Size = new System.Drawing.Size(117, 15);
+            this.SearchForCompany.TabIndex = 0;
+            this.SearchForCompany.Text = "Search For Company";
             // 
             // EmployesPage
             // 
@@ -120,6 +165,15 @@
             this.EmployesPage.Text = "EmployesPage";
             this.EmployesPage.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.employesGridView);
+            this.groupBox2.Location = new System.Drawing.Point(3, 58);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(804, 432);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            // 
             // employesGridView
             // 
             this.employesGridView.AllowUserToAddRows = false;
@@ -132,11 +186,40 @@
             this.employesGridView.TabIndex = 0;
             this.employesGridView.Text = "dataGridView1";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnRefreshEmployes);
+            this.groupBox1.Controls.Add(this.SearchForEmploye);
+            this.groupBox1.Controls.Add(this.txtBoxSearchField);
+            this.groupBox1.Location = new System.Drawing.Point(3, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(801, 71);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            // 
+            // SearchForEmploye
+            // 
+            this.SearchForEmploye.AutoSize = true;
+            this.SearchForEmploye.Location = new System.Drawing.Point(17, 28);
+            this.SearchForEmploye.Name = "SearchForEmploye";
+            this.SearchForEmploye.Size = new System.Drawing.Size(105, 15);
+            this.SearchForEmploye.TabIndex = 1;
+            this.SearchForEmploye.Text = "SearchForEmploye";
+            this.SearchForEmploye.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // txtBoxSearchField
+            // 
+            this.txtBoxSearchField.Location = new System.Drawing.Point(128, 25);
+            this.txtBoxSearchField.Name = "txtBoxSearchField";
+            this.txtBoxSearchField.Size = new System.Drawing.Size(543, 23);
+            this.txtBoxSearchField.TabIndex = 0;
+            this.txtBoxSearchField.TextChanged += new System.EventHandler(this.txtBoxSearchField_TextChanged);
+            // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(174, 532);
+            this.btnRefresh.Location = new System.Drawing.Point(683, 21);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.Size = new System.Drawing.Size(111, 23);
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "btnRefresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -162,42 +245,15 @@
             this.btnDeleteRecord.UseVisualStyleBackColor = true;
             this.btnDeleteRecord.Click += new System.EventHandler(this.btnDeleteRecord_Click);
             // 
-            // groupBox1
+            // btnRefreshEmployes
             // 
-            this.groupBox1.Controls.Add(this.SearchForEmploye);
-            this.groupBox1.Controls.Add(this.txtBoxSearchField);
-            this.groupBox1.Location = new System.Drawing.Point(3, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(806, 71);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.employesGridView);
-            this.groupBox2.Location = new System.Drawing.Point(3, 58);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(804, 432);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            // 
-            // txtBoxSearchField
-            // 
-            this.txtBoxSearchField.Location = new System.Drawing.Point(128, 25);
-            this.txtBoxSearchField.Name = "txtBoxSearchField";
-            this.txtBoxSearchField.Size = new System.Drawing.Size(672, 23);
-            this.txtBoxSearchField.TabIndex = 0;
-            this.txtBoxSearchField.TextChanged += new System.EventHandler(this.txtBoxSearchField_TextChanged);
-            // 
-            // SearchForEmploye
-            // 
-            this.SearchForEmploye.AutoSize = true;
-            this.SearchForEmploye.Location = new System.Drawing.Point(17, 28);
-            this.SearchForEmploye.Name = "SearchForEmploye";
-            this.SearchForEmploye.Size = new System.Drawing.Size(105, 15);
-            this.SearchForEmploye.TabIndex = 1;
-            this.SearchForEmploye.Text = "SearchForEmploye";
-            this.SearchForEmploye.Click += new System.EventHandler(this.label1_Click);
+            this.btnRefreshEmployes.Location = new System.Drawing.Point(677, 25);
+            this.btnRefreshEmployes.Name = "btnRefreshEmployes";
+            this.btnRefreshEmployes.Size = new System.Drawing.Size(111, 23);
+            this.btnRefreshEmployes.TabIndex = 3;
+            this.btnRefreshEmployes.Text = "btnRefresh";
+            this.btnRefreshEmployes.UseVisualStyleBackColor = true;
+            this.btnRefreshEmployes.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // MainForm
             // 
@@ -206,7 +262,6 @@
             this.ClientSize = new System.Drawing.Size(842, 567);
             this.Controls.Add(this.btnDeleteRecord);
             this.Controls.Add(this.btnEditRecord);
-            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.mainTabControl);
             this.Controls.Add(this.btnAddCompany);
             this.Controls.Add(this.btnAddEmploye);
@@ -215,12 +270,15 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.mainTabControl.ResumeLayout(false);
             this.CompaniesPage.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.companiesGridView)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.EmployesPage.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.employesGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -241,6 +299,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label SearchForEmploye;
         private System.Windows.Forms.TextBox txtBoxSearchField;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txtBoxSearchFieldCompany;
+        private System.Windows.Forms.Label SearchForCompany;
+        private System.Windows.Forms.Button btnRefreshEmployes;
     }
 }
 
