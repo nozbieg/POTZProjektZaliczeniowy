@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace POTZProjektZaliczeniowy.Model
@@ -16,7 +17,9 @@ namespace POTZProjektZaliczeniowy.Model
 
         public string Email { get; set; }
 
-        public Company Company { get; set; }
+#nullable enable
+        public int? CompanyID { get; set; }
+        public Company? Company { get; set; }
 
        
     }

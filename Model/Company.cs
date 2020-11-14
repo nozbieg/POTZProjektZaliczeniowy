@@ -12,7 +12,8 @@ namespace POTZProjektZaliczeniowy.Model
 
         public int NIP { get; set; }
 
-        ICollection<Employe> Employes { get; set; }
+
+        public ICollection<Employe> Employes { get; set; }
 
         
     }

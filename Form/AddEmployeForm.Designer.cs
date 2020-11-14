@@ -38,6 +38,7 @@
             this.txtBoxEmail = new System.Windows.Forms.TextBox();
             this.btnAddEmploye = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.comboBoxCompany = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -127,11 +128,20 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // comboBoxCompany
+            // 
+            this.comboBoxCompany.FormattingEnabled = true;
+            this.comboBoxCompany.Location = new System.Drawing.Point(90, 144);
+            this.comboBoxCompany.Name = "comboBoxCompany";
+            this.comboBoxCompany.Size = new System.Drawing.Size(155, 23);
+            this.comboBoxCompany.TabIndex = 10;
+            // 
             // AddEmployeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(262, 250);
+            this.Controls.Add(this.comboBoxCompany);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAddEmploye);
             this.Controls.Add(this.txtBoxEmail);
@@ -162,5 +172,6 @@
         private System.Windows.Forms.TextBox txtBoxEmail;
         private System.Windows.Forms.Button btnAddEmploye;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ComboBox comboBoxCompany;
     }
 }

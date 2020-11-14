@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Text;
 
 
-
 namespace POTZProjektZaliczeniowy.Data
 {
     public class CompanyContext : DbContext
@@ -24,7 +23,13 @@ namespace POTZProjektZaliczeniowy.Data
             optionsBuilder.UseSqlite(@"Data Source=Company.db");
             base.OnConfiguring(optionsBuilder);
         }
-
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Company>()
+        //        .HasMany<Employe>(e => e.Employes)
+        //        .WithOne(e => e.Company);
+        
+        //}
         
     
     }
