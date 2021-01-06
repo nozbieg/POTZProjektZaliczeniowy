@@ -45,5 +45,10 @@ namespace POTZProjektZaliczeniowy.Form
                 dbContext.SaveChanges();
             }
         }
+
+        private void AddCompanyForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

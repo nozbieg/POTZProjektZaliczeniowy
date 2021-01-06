@@ -101,6 +101,7 @@
             this.Controls.Add(this.CompanyName);
             this.Name = "AddCompanyForm";
             this.Text = "AddCompanyForm";
+            this.Load += new System.EventHandler(this.AddCompanyForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

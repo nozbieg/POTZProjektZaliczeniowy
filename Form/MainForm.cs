@@ -95,25 +95,36 @@ namespace POTZProjektZaliczeniowy
             BindingSource source = new BindingSource();
             using (CompanyContext dbContext = new CompanyContext())
             {
-                if (table == "Employes") 
+                if (table == "Employes")
                 {
-                    var query = from emp in dbContext.Employes
-                                where emp.FristName.Contains(searchValue)
-                                    || emp.LastName.Contains(searchValue)
-                                    || emp.Email.Contains(searchValue)
-                                    || emp.Company.CompanyName.Contains(searchValue)
-                                    || emp.Company.NIP.Contains(searchValue)
-                                select new
-                                {
-                                    emp.EmployeID,
-                                    emp.FristName,
-                                    emp.LastName,
-                                    emp.Email,
-                                    emp.Company.CompanyName,
-                                    emp.Company.NIP
-                                };
-                    source.DataSource = query.ToList();
+                    var convertedSearchValue = 0;
+                    try
+                    {
+                        convertedSearchValue = Convert.ToInt32(searchValue);
+                    }
+                    catch(Exception ex)
+                    {
 
+                    }
+
+                        var query = from emp in dbContext.Employes
+                                    where emp.FristName.Contains(searchValue)
+                                        || emp.LastName.Contains(searchValue)
+                                        || emp.Email.Contains(searchValue)
+                                        || emp.Company.CompanyName.Contains(searchValue)
+                                        || emp.Company.NIP.Contains(searchValue)
+                                        || emp.EmployeID == convertedSearchValue
+                                    select new
+                                    {
+                                        emp.EmployeID,
+                                        emp.FristName,
+                                        emp.LastName,
+                                        emp.Email,
+                                        emp.Company.CompanyName,
+                                        emp.Company.NIP
+                                    };
+                    source.DataSource = query.ToList();
+                        
                 }
                 else if (table == "Companies")
                 {
